@@ -10,5 +10,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Toast.makeText(this,"I added androidx.core:core-ktx:1.3.2 dependency",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"I added androidx.core:core-ktx:1.3.2 dependency",Toast.LENGTH_SHORT).show()
     }
 }
