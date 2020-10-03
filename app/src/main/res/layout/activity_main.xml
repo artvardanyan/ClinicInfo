@@ -15,4 +15,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu" />
 
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.acaandroid.clinicinfo.ListPatient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

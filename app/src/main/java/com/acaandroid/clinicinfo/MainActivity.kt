@@ -1,12 +1,16 @@
 package com.acaandroid.clinicinfo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var fragmentRegistrPatent: RegistrPatent = RegistrPatent()
+    var fragmentListPatent: ListPatient = ListPatient()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,10 +18,14 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemReselectedListener { item ->
             when(item.itemId) {
                 R.id.list -> {
-                    Toast.makeText(this, "sds", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, fragmentListPatent)
+                        .commit()
                 }
                 R.id.add -> {
-                    Toast.makeText(this, "sds", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, fragmentRegistrPatent)
+                        .commit()
                 }
                 R.id.dataBase -> {
                     Toast.makeText(this, "sds", Toast.LENGTH_SHORT).show()
