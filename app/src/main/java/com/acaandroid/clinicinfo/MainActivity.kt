@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 }
                 R.id.dataBase -> {
-                    Toast.makeText(this, "sds", Toast.LENGTH_SHORT).show()
+
                 }
             }
         }
