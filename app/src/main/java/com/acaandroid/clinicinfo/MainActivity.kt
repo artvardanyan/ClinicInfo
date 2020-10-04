@@ -8,7 +8,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var fragmentRegistrPatent: RegistrPatent = RegistrPatent()
-    var fragmentListPatent: ListPatient = ListPatient()
+    private var fragmentListPatent: ListPatient = ListPatient()
+    private var fragmentDataBasePatient: DataBasePatent = DataBasePatent()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 }
                 R.id.dataBase -> {
-
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, fragmentDataBasePatient)
+                        .commit()
                 }
             }
         }
