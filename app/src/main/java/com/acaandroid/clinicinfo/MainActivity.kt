@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     private var fragmentListPatent: ListPatient = ListPatient()
     private var fragmentDataBasePatient: DataBasePatent = DataBasePatent()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

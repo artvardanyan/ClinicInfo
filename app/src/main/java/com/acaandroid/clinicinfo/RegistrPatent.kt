@@ -16,22 +16,27 @@ class RegistrPatent : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_registr_patent, container, false)
     }
 
-    companion object {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+    }
+
+    companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             RegistrPatent().apply {
@@ -40,5 +45,5 @@ class RegistrPatent : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
+        }
 }
