@@ -105,6 +105,7 @@
 
     <Button
         android:id="@+id/ortodonia"
+        android:text="Orthodontics"
         android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,6 +115,8 @@
 
     <Button
         android:id="@+id/xirurg"
+        android:textAllCaps="false"
+        android:text="Surgeon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/ortodonia"
