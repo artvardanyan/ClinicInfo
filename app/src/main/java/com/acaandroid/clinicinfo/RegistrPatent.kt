@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.fragment_registr_patent.*
-import kotlinx.android.synthetic.main.login_dialog.view.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -39,32 +39,36 @@ class RegistrPatent : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         terapia.setOnClickListener {
-            val mDialogView = LayoutInflater.from(context).inflate(R.layout.login_dialog, null)
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog, null)
             val mBuilder = AlertDialog.Builder(context)
                 .setView(mDialogView)
                 .setTitle("Login Form")
-                .setPositiveButton("Ok") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
-                }
-                .setNegativeButton("Cancel") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
+                .setPositiveButton("Ok"){dialogInterface, which ->
+                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                    val name = mDialogView.radioButton1.text.toString()
+                    terapia.text = name
+            }
+                .setNegativeButton("Cancel"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
                 }
 
-            val mAlertDialog = mBuilder.show()
+            val  mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
+                //dismiss dialog
                 mAlertDialog.dismiss()
 
-
-                mDialogView.setOnClickListener {
-                    mAlertDialog.dismiss()
+            //cancel button click of custom layout
+            mDialogView.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
                 }
 
             }
 
-        }
-
     }
+
+}
 
     companion object {
         @JvmStatic
