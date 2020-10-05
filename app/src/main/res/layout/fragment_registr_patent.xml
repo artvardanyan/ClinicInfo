@@ -84,6 +84,8 @@
 
     <Button
         android:id="@+id/terapia"
+        android:text="Therapist"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -93,6 +95,8 @@
 
     <Button
         android:id="@+id/ortopedia"
+        android:text="Orthopedics"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/terapia"
@@ -101,6 +105,7 @@
 
     <Button
         android:id="@+id/ortodonia"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/ortopedia"
