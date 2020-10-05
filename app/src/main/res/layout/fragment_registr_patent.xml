@@ -82,4 +82,50 @@
 
     </RadioGroup>
 
+    <Button
+        android:id="@+id/terapia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/ortopedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/terapia"
+        app:layout_constraintStart_toEndOf="@+id/terapia"
+        app:layout_constraintTop_toTopOf="@+id/terapia" />
+
+    <Button
+        android:id="@+id/ortodonia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ortopedia"
+        app:layout_constraintStart_toEndOf="@+id/ortopedia"
+        app:layout_constraintTop_toTopOf="@+id/ortopedia" />
+
+    <Button
+        android:id="@+id/xirurg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ortodonia"
+        app:layout_constraintStart_toEndOf="@+id/ortodonia"
+        app:layout_constraintTop_toTopOf="@+id/ortodonia" />
+
+
+    <Button
+        android:id="@+id/registr"
+        android:text="Registration"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terapia" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
