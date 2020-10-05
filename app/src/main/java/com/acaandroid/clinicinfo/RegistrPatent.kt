@@ -1,10 +1,14 @@
 package com.acaandroid.clinicinfo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_registr_patent.*
+import kotlinx.android.synthetic.main.login_dialog.view.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -34,6 +38,32 @@ class RegistrPatent : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        terapia.setOnClickListener {
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.login_dialog, null)
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("Login Form")
+                .setPositiveButton("Ok") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
+                }
+                .setNegativeButton("Cancel") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
+                }
+
+            val mAlertDialog = mBuilder.show()
+
+            mDialogView.setOnClickListener {
+                mAlertDialog.dismiss()
+
+
+                mDialogView.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
+
+            }
+
+        }
+
     }
 
     companion object {
@@ -45,5 +75,5 @@ class RegistrPatent : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-        }
+    }
 }
