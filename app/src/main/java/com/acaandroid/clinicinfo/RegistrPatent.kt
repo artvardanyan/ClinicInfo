@@ -55,18 +55,64 @@ class RegistrPatent : Fragment() {
             val  mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
-                //dismiss dialog
                 mAlertDialog.dismiss()
 
-            //cancel button click of custom layout
             mDialogView.setOnClickListener {
-                //dismiss dialog
                 mAlertDialog.dismiss()
                 }
 
             }
-
     }
+
+        ortopedia.setOnClickListener {
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_ortopedia, null)
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("Login Form")
+                .setPositiveButton("Ok"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                    val name = mDialogView.radioButton1.text.toString()
+                    terapia.text = name
+                }
+                .setNegativeButton("Cancel"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
+                }
+
+            val  mAlertDialog = mBuilder.show()
+
+            mDialogView.setOnClickListener {
+                mAlertDialog.dismiss()
+
+                mDialogView.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
+            }
+        }
+
+        surgeon.setOnClickListener {
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_surgeon, null)
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("Login Form")
+                .setPositiveButton("Ok"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                    val name = mDialogView.radioButton1.text.toString()
+                    terapia.text = name
+                }
+                .setNegativeButton("Cancel"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
+                }
+
+            val  mAlertDialog = mBuilder.show()
+
+            mDialogView.setOnClickListener {
+                mAlertDialog.dismiss()
+
+                mDialogView.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
+            }
+        }
 
 }
 
