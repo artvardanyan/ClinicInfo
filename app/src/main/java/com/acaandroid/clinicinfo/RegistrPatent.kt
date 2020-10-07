@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.room.Room
+import com.acaandroid.clinicinfo.database.AppDatabase
 import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.fragment_registr_patent.*
 
@@ -17,6 +19,13 @@ class RegistrPatent : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
+
+    private val db by lazy {
+        Room.databaseBuilder(
+            context!!,
+            AppDatabase::class.java, "database_name"
+        ).build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +53,12 @@ class RegistrPatent : Fragment() {
                 .setView(mDialogView)
                 .setTitle("Login Form")
                 .setPositiveButton("Ok"){dialogInterface, which ->
-                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"clicked yes", Toast.LENGTH_LONG).show()
                     val name = mDialogView.radioButton1.text.toString()
                     terapia.text = name
             }
                 .setNegativeButton("Cancel"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
             val  mAlertDialog = mBuilder.show()
