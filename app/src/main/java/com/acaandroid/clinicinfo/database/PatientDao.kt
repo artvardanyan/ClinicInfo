@@ -15,9 +15,6 @@ interface PatientDao {
     @Query("SELECT * FROM patient where lastName= :lastName and firstName= :firstName")
     suspend fun getUser(lastName: String?, firstName: String?): Patient?
 
-    @Query("SELECT * FROM patient WHERE lastName=:lastName")
-    suspend fun findUser(lastName: String): Patient?
-
     @Insert
     suspend fun insertAll(patient: Patient)
 

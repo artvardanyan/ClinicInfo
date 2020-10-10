@@ -11,6 +11,9 @@ import androidx.room.Room
 import com.acaandroid.clinicinfo.database.AppDatabase
 import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.fragment_registr_patent.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -69,9 +72,8 @@ class RegistrPatent : Fragment() {
             mDialogView.setOnClickListener {
                 mAlertDialog.dismiss()
                 }
-
             }
-    }
+        }
 
         ortopedia.setOnClickListener {
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_ortopedia, null)
@@ -120,6 +122,12 @@ class RegistrPatent : Fragment() {
                 mDialogView.setOnClickListener {
                     mAlertDialog.dismiss()
                 }
+            }
+        }
+
+        registr.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                    //db.patientDao().getAll()
             }
         }
 
