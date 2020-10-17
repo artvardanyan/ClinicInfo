@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.dialog_rec.*
 import kotlinx.android.synthetic.main.fragment_list_patient.*
 import kotlinx.android.synthetic.main.fragment_registr_patent.*
+import java.text.DateFormat
+import java.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -39,6 +41,7 @@ class ListPatient : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         fab.setOnClickListener { view ->
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_rec, null)
             val mBuilder = AlertDialog.Builder(context)
@@ -51,6 +54,7 @@ class ListPatient : Fragment() {
                     Toast.makeText(context,"clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
+
             val  mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
@@ -61,6 +65,7 @@ class ListPatient : Fragment() {
                 }
             }
         }
+
     }
 
     companion object {
