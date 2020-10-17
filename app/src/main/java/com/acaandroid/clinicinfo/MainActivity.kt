@@ -1,15 +1,14 @@
 package com.acaandroid.clinicinfo
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var fragmentRegistrPatent: RegistrPatent = RegistrPatent()
+    private var fragmentRegisterPatient: RegisterPatient = RegisterPatient()
     private var fragmentListPatent: ListPatient = ListPatient()
-    private var fragmentDataBasePatient: DataBasePatent = DataBasePatent()
+    private var fragmentDataBasePatient: DataBasePatient = DataBasePatient()
     private var fragmentHomePage: HomePage = HomePage();
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.add -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, fragmentRegistrPatent)
+                        .replace(R.id.fragment, fragmentRegisterPatient)
                         .commit()
                 }
                 R.id.dataBase -> {
