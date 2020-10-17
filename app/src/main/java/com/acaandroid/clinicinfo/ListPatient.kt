@@ -1,12 +1,17 @@
 package com.acaandroid.clinicinfo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.dialog.view.*
+import kotlinx.android.synthetic.main.dialog_rec.*
 import kotlinx.android.synthetic.main.fragment_list_patient.*
+import kotlinx.android.synthetic.main.fragment_registr_patent.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -35,8 +40,26 @@ class ListPatient : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_rec, null)
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogView)
+                .setTitle("Login Form")
+                .setPositiveButton("Ok"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked yes", Toast.LENGTH_LONG).show()
+                }
+                .setNegativeButton("Cancel"){dialogInterface, which ->
+                    Toast.makeText(context,"clicked Cancel", Toast.LENGTH_LONG).show()
+                }
+
+            val  mAlertDialog = mBuilder.show()
+
+            mDialogView.setOnClickListener {
+                mAlertDialog.dismiss()
+
+                mDialogView.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
+            }
         }
     }
 
