@@ -23,7 +23,7 @@ class ListPatient : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    override fun onCreate (savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -31,7 +31,7 @@ class ListPatient : Fragment() {
         }
     }
 
-    override fun onCreateView (
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -42,20 +42,20 @@ class ListPatient : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_rec, null)
             val mBuilder = AlertDialog.Builder(context)
                 .setView(mDialogView)
                 .setTitle("Login Form")
-                .setPositiveButton("Ok"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked yes", Toast.LENGTH_LONG).show()
+                .setPositiveButton("Ok") { _, _ ->
+                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
                 }
-                .setNegativeButton("Cancel"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked Cancel", Toast.LENGTH_LONG).show()
+                .setNegativeButton("Cancel") { _, _ ->
+                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
 
-            val  mAlertDialog = mBuilder.show()
+            val mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
                 mAlertDialog.dismiss()
@@ -77,6 +77,6 @@ class ListPatient : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-        }
+    }
 
 }

@@ -55,22 +55,22 @@ class RegisterPatient : Fragment() {
             val mBuilder = AlertDialog.Builder(context)
                 .setView(mDialogView)
                 .setTitle("Login Form")
-                .setPositiveButton("Ok"){dialogInterface, which ->
-                Toast.makeText(context,"clicked yes", Toast.LENGTH_LONG).show()
+                .setPositiveButton("Ok") { _, _ ->
+                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
                     val name = mDialogView.radioButton1.text.toString()
                     terapia.text = name
-            }
-                .setNegativeButton("Cancel"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked Cancel", Toast.LENGTH_LONG).show()
+                }
+                .setNegativeButton("Cancel") { _, _ ->
+                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
-            val  mAlertDialog = mBuilder.show()
+            val mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
                 mAlertDialog.dismiss()
 
-            mDialogView.setOnClickListener {
-                mAlertDialog.dismiss()
+                mDialogView.setOnClickListener {
+                    mAlertDialog.dismiss()
                 }
             }
         }
@@ -80,16 +80,16 @@ class RegisterPatient : Fragment() {
             val mBuilder = AlertDialog.Builder(context)
                 .setView(mDialogView)
                 .setTitle("Login Form")
-                .setPositiveButton("Ok"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                .setPositiveButton("Ok") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
                     val name = mDialogView.radioButton1.text.toString()
                     terapia.text = name
                 }
-                .setNegativeButton("Cancel"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
+                .setNegativeButton("Cancel") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
-            val  mAlertDialog = mBuilder.show()
+            val mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
                 mAlertDialog.dismiss()
@@ -105,16 +105,16 @@ class RegisterPatient : Fragment() {
             val mBuilder = AlertDialog.Builder(context)
                 .setView(mDialogView)
                 .setTitle("Login Form")
-                .setPositiveButton("Ok"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                .setPositiveButton("Ok") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
                     val name = mDialogView.radioButton1.text.toString()
                     terapia.text = name
                 }
-                .setNegativeButton("Cancel"){dialogInterface, which ->
-                    Toast.makeText(context,"clicked Cancel",Toast.LENGTH_LONG).show()
+                .setNegativeButton("Cancel") { dialogInterface, which ->
+                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
                 }
 
-            val  mAlertDialog = mBuilder.show()
+            val mAlertDialog = mBuilder.show()
 
             mDialogView.setOnClickListener {
                 mAlertDialog.dismiss()
@@ -127,11 +127,11 @@ class RegisterPatient : Fragment() {
 
         registr.setOnClickListener {
             GlobalScope.launch(Dispatchers.IO) {
-                    //db.patientDao().getAll()
+                //db.patientDao().getAll()
             }
         }
 
-}
+    }
 
     companion object {
         @JvmStatic
