@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.room.Room
 import com.acaandroid.clinicinfo.database.AppDatabase
 import kotlinx.android.synthetic.main.dialog.view.*
-import kotlinx.android.synthetic.main.fragment_registr_patent.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,92 +43,12 @@ class RegisterPatient : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_registr_patent, container, false)
+        return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        terapia.setOnClickListener {
-            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog, null)
-            val mBuilder = AlertDialog.Builder(context)
-                .setView(mDialogView)
-                .setTitle("Login Form")
-                .setPositiveButton("Ok") { _, _ ->
-                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
-                    val name = mDialogView.radioButton1.text.toString()
-                    terapia.text = name
-                }
-                .setNegativeButton("Cancel") { _, _ ->
-                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
-                }
-
-            val mAlertDialog = mBuilder.show()
-
-            mDialogView.setOnClickListener {
-                mAlertDialog.dismiss()
-
-                mDialogView.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
-            }
-        }
-
-        ortopedia.setOnClickListener {
-            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_ortopedia, null)
-            val mBuilder = AlertDialog.Builder(context)
-                .setView(mDialogView)
-                .setTitle("Login Form")
-                .setPositiveButton("Ok") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
-                    val name = mDialogView.radioButton1.text.toString()
-                    terapia.text = name
-                }
-                .setNegativeButton("Cancel") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
-                }
-
-            val mAlertDialog = mBuilder.show()
-
-            mDialogView.setOnClickListener {
-                mAlertDialog.dismiss()
-
-                mDialogView.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
-            }
-        }
-
-        surgeon.setOnClickListener {
-            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_surgeon, null)
-            val mBuilder = AlertDialog.Builder(context)
-                .setView(mDialogView)
-                .setTitle("Login Form")
-                .setPositiveButton("Ok") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked yes", Toast.LENGTH_LONG).show()
-                    val name = mDialogView.radioButton1.text.toString()
-                    terapia.text = name
-                }
-                .setNegativeButton("Cancel") { dialogInterface, which ->
-                    Toast.makeText(context, "clicked Cancel", Toast.LENGTH_LONG).show()
-                }
-
-            val mAlertDialog = mBuilder.show()
-
-            mDialogView.setOnClickListener {
-                mAlertDialog.dismiss()
-
-                mDialogView.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
-            }
-        }
-
-        registr.setOnClickListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                //db.patientDao().getAll()
-            }
-        }
 
     }
 

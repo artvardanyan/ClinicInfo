@@ -11,7 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.dialog_rec.*
 import kotlinx.android.synthetic.main.fragment_list_patient.*
-import kotlinx.android.synthetic.main.fragment_registr_patent.*
 import java.text.DateFormat
 import java.util.*
 
