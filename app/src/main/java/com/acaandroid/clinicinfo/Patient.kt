@@ -9,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Patient (
     @PrimaryKey
-    val firstName: String,
-    val lastName: String
+    val fullName: String,
+    val address: String,
+    val Phone: Int
 ) : Parcelable
