@@ -3,7 +3,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,18 +24,25 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <EditText
-                android:id="@+id/fullName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Ազգանունը, անունը, հայրանունը"
-                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.461"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHeader" />
+                app:layout_constraintTop_toBottomOf="@+id/txtHeader" >
+
+                <EditText
+                    android:id="@+id/fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Ազգանունը, անունը, հայրանունը"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtBirthday"
@@ -46,7 +52,7 @@
                 android:text="Ծննդյան օրը, ամիսը, տարեթիվը "
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fullName" />
+                app:layout_constraintTop_toBottomOf="@+id/fullNameLayout" />
 
             <Spinner
                 android:id="@+id/spinnerDays"
@@ -108,28 +114,44 @@
                 app:layout_constraintStart_toEndOf="@+id/checkMale"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerMonths" />
 
-            <EditText
-                android:id="@+id/address"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addressLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:hint="Բնակության վայրը"
-                android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkMale" />
+                app:layout_constraintTop_toBottomOf="@+id/checkMale">
 
-            <EditText
-                android:id="@+id/Phone"
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:hint="Բնակության վայրը"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PhoneLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:hint="Հեռախոսի համարը"
-                android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address" />
+                app:layout_constraintTop_toBottomOf="@+id/addressLayout">
+
+                <EditText
+                    android:id="@+id/Phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:hint="Հեռախոսի համարը"
+                    android:inputType="phone"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/txtHealthInfo"
@@ -141,7 +163,7 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Phone" />
+                app:layout_constraintTop_toBottomOf="@+id/PhoneLayout" />
 
             <TextView
                 android:id="@+id/question1"
@@ -174,17 +196,25 @@
                 app:layout_constraintStart_toEndOf="@+id/checkAllergyTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question1" />
 
-            <EditText
-                android:id="@+id/etAllergy"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etAllergyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:hint="Ալերգիկ Դրսևորումներ"
-                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue" />
+                app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue" >
+
+                <EditText
+                    android:id="@+id/etAllergy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:ems="10"
+                    android:hint="Ալերգիկ Դրսևորումներ"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/question2"
@@ -194,7 +224,7 @@
                 android:text="@string/healthQuestion2"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etAllergy" />
+                app:layout_constraintTop_toBottomOf="@+id/etAllergyLayout" />
 
             <CheckBox
                 android:id="@+id/checkBleedingTrue"

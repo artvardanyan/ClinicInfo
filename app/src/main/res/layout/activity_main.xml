@@ -17,6 +17,7 @@
 
     <fragment
         android:id="@+id/fragment"
+        tools:layout="@layout/fragment_list_patient"
         android:name="com.acaandroid.clinicinfo.ListPatient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
