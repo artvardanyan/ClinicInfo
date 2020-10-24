@@ -2,37 +2,40 @@ package com.acaandroid.clinicinfo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.acaandroid.clinicinfo.fragments.HomeFragment
+import com.acaandroid.clinicinfo.fragments.RegisterFragment
+import com.acaandroid.clinicinfo.fragments.SearchingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var fragmentRegisterPatient: RegisterPatient = RegisterPatient()
-    private var fragmentListPatent: ListPatient = ListPatient()
-    private var fragmentDataBasePatient: DataBasePatient = DataBasePatient()
+    private var homeFragment: HomeFragment = HomeFragment()
+    private var registerFragment: RegisterFragment = RegisterFragment()
+    private var searchFragment: SearchingFragment = SearchingFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottom_navigation.setOnNavigationItemReselectedListener { item ->
-            when(item.itemId) {
-                R.id.list -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, fragmentListPatent)
-                        .commit()
-                }
-                R.id.add -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, fragmentRegisterPatient)
-                        .commit()
-                }
-                R.id.dataBase -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, fragmentDataBasePatient)
-                        .commit()
-                }
+        makeCurrentFragment(homeFragment)
+
+        //button navigates fragments
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> makeCurrentFragment(homeFragment)
+                R.id.register -> makeCurrentFragment(registerFragment)
+                R.id.search -> makeCurrentFragment(searchFragment)
             }
+            true
         }
 
     }
+
+    //Navigate fragments
+    private fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment, fragment)
+            commit()
+        }
 }

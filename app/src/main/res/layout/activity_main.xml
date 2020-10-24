@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu" />
+        app:menu="@menu/navigation_menu" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment"
-        android:name="com.acaandroid.clinicinfo.ListPatient"
+        android:name="com.acaandroid.clinicinfo.fragments.ListPatient"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
