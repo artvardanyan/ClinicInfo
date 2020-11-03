@@ -1,8 +1,7 @@
-package com.acaandroid.clinicinfo.databasenote
+package com.acaandroid.clinicinfo.data_base
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.acaandroid.clinicinfo.databasenote.NotesDao
 
 @Database(entities = [Notes::class], version = 1)
 abstract class ClinicInfo : RoomDatabase() {

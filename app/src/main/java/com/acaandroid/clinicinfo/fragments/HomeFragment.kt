@@ -1,41 +1,52 @@
 package com.acaandroid.clinicinfo.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.text.format.DateFormat.is24HourFormat
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.acaandroid.clinicinfo.R
-import com.acaandroid.clinicinfo.databasenote.Notes
-import com.acaandroid.clinicinfo.databasenote.ClinicInfo
+import com.acaandroid.clinicinfo.data_base.ClinicInfo
+import com.acaandroid.clinicinfo.data_base.Notes
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
+const val REQUEST_CALL = 1
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
 
 
-    private lateinit var noteList: List<Notes>
+    private lateinit var noteList: MutableList<Notes>
+    private var searchingList: MutableList<Notes> = mutableListOf()
     private var db: ClinicInfo? = null
-    private lateinit var viewAdapter : RecNoteAdapter
+    private lateinit var viewAdapter: RecNoteAdapter
+    private lateinit var phoneNumber : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //build database
-      /*  db = context?.let {
+        db = context?.let {
             Room.databaseBuilder(
                 it,
                 ClinicInfo::class.java, "clinic_info"
@@ -46,10 +57,13 @@ class HomeFragment : Fragment() {
         GlobalScope.launch(Dispatchers.Default) {
 
             if (db != null) {
-                noteList = db!!.notesDao().getAllNotes()
+                noteList = db!!.notesDao().getAllNotes() as MutableList<Notes>
             }
-        }*/
+        }
+
+
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,13 +72,16 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewAdapter = RecNoteAdapter()
+        viewAdapter = RecNoteAdapter(this)
         viewAdapter.setList(noteList)
+
+
 
         //show list of notes
         recViewNote.apply {
@@ -80,28 +97,21 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                var  searchingList : List<Notes>? = null
-                if (p0!!.isNotEmpty()){
+                //var searchingList: List<Notes>? = null
+
+                searchingList.clear()
+                if (p0!!.isNotEmpty()) {
                     searchingList = noteList.filter {
-                        it.name.toLowerCase(Locale.getDefault()).contains(p0.toLowerCase(Locale.getDefault())) or
-                        it.phone.contains(p0) or
-                        it.time.toLowerCase(Locale.getDefault()).contains(p0)
+                        it.name.toLowerCase(Locale.getDefault())
+                            .contains(p0.toLowerCase(Locale.getDefault())) or
+                                it.phone.contains(p0) or
+                                it.time.toLowerCase(Locale.getDefault()).contains(p0)
 
 
-                    }
-                    recViewNote.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = viewAdapter
-                        viewAdapter.setList(searchingList!!)
-
-                }
-                }else{
-                    recViewNote.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = viewAdapter
-                        viewAdapter.setList(noteList)
-
-                    }
+                    } as MutableList<Notes>
+                    viewAdapter.setList(searchingList)
+                } else {
+                    viewAdapter.setList(noteList)
                 }
                 return true
             }
@@ -111,7 +121,7 @@ class HomeFragment : Fragment() {
 
         //filter data by note's date
         filter.setOnClickListener {
-            val filterMenu = PopupMenu(context,filter)
+            val filterMenu = PopupMenu(context, filter)
             filterMenu.inflate(R.menu.filter_menu)
             filterMenu.show()
 
@@ -119,107 +129,101 @@ class HomeFragment : Fragment() {
             filterMenu.setOnMenuItemClickListener { item ->
 
                 val calendar = Calendar.getInstance()
-                when(item.itemId){
+                when (item.itemId) {
                     R.id.allTimes -> {
 
-
+                        searchingList.clear()
                         viewAdapter.setList(noteList)
-
 
 
                     }
                     R.id.lastMonth -> {
 
-                       val month = DateFormat.format("MMM",calendar).toString()
-                       val year = DateFormat.format("yyyy",calendar).toString()
+                        searchingList.clear()
+                        val month = DateFormat.format("MMM", calendar).toString()
+                        val year = DateFormat.format("yyyy", calendar).toString()
 
-                       val searchingList = noteList.filter {
-                                   it.date.contains(month) and
-                                   it.date.contains(year)
-                       }
-                       recViewNote.apply {
-                           layoutManager = LinearLayoutManager(context)
-                           adapter = viewAdapter
-                           viewAdapter.setList(searchingList)
-                       }
+                        searchingList = noteList.filter {
+                            it.date.contains(month) and
+                                    it.date.contains(year)
+                        } as MutableList<Notes>
 
-                   }
+                        viewAdapter.setList(searchingList)
+
+                    }
                     R.id.lastWeek -> {
 
 
-//                        val searchingList = mutableListOf<Notes>()
-//                        var i = 0
-//                        while(i < 7){
-//                            val dateText = DateFormat.format("EEEE, MMM d, yyyy", calendar).toString()
-//                            searchingList += noteList.filter {
-//                                it.date == dateText
-//                            } as MutableList<Notes>
-//                            calendar.add(Calendar.DAY_OF_YEAR,-1)
-//                            i++
-//                        }
-//                        Toast.makeText(context,"$searchingList",Toast.LENGTH_LONG).show()
-//                        recViewNote.apply {
-//                            layoutManager = LinearLayoutManager(context)
-//                            adapter = viewAdapter
-//                            viewAdapter.setList(searchingList)
-//                        }
-                        val calendarLastWeek = calendar.add(Calendar.DAY_OF_YEAR,-7)
-                        val searchingList  = noteList.filter{
-                            it.getCalendar().after(calendarLastWeek)
+                        searchingList.clear()
+                        var i = 0
+                        while (i < 7) {
+                            val dateText =
+                                DateFormat.format("EEEE, MMM d, yyyy", calendar).toString()
+                            searchingList.plusAssign(noteList.filter {
+                                it.date == dateText
+                            }as MutableList<Notes>)
+                            calendar.add(Calendar.DAY_OF_YEAR, -1)
+                            i++
                         }
-
                         viewAdapter.setList(searchingList)
+//                        val calendarLastWeek = calendar.add(Calendar.DAY_OF_YEAR,-7)
+//                        val searchingList  = noteList.filter{
+//                            it.getCalendar().after(calendarLastWeek)
+//                        }
+//
+//                        viewAdapter.setList(searchingList)
 
 
                     }
                     R.id.today -> {
 
+                        searchingList.clear()
                         val dateText = DateFormat.format("EEEE, MMM d, yyyy", calendar).toString()
-                        val searchingList = noteList.filter {
+                        searchingList = noteList.filter {
                             it.date.contains(dateText)
-                        }
-                        recViewNote.apply {
-                            layoutManager = LinearLayoutManager(context)
-                            adapter = viewAdapter
-                            viewAdapter.setList(searchingList)
-                        }
+                        }as MutableList<Notes>
+                        viewAdapter.setList(searchingList)
 
 
                     }
                     R.id.custom -> {
+
+                        searchingList.clear()
                         val YEAR = calendar.get(Calendar.YEAR)
                         val MONTH = calendar.get(Calendar.MONTH)
                         val DATE = calendar.get(Calendar.DATE)
                         val datePickerDialog =
                             context?.let {
-                                DatePickerDialog(it, DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
-                                    val calendar1 = Calendar.getInstance()
-                                    calendar1.set(Calendar.YEAR, i)
-                                    calendar1.set(Calendar.MONTH, i2)
-                                    calendar1.set(Calendar.DATE, i3)
-                                    val dateText = DateFormat.format("EEEE, MMM d, yyyy", calendar1).toString()
+                                DatePickerDialog(
+                                    it,
+                                    { datePicker, i, i2, i3 ->
+                                        val calendar1 = Calendar.getInstance()
+                                        calendar1.set(Calendar.YEAR, i)
+                                        calendar1.set(Calendar.MONTH, i2)
+                                        calendar1.set(Calendar.DATE, i3)
+                                        val dateText =
+                                            DateFormat.format("EEEE, MMM d, yyyy", calendar1)
+                                                .toString()
 
-                                    val searchingList = noteList.filter {
-                                        it.date == dateText
-                                    }
-                                    recViewNote.apply {
-                                        layoutManager = LinearLayoutManager(context)
-                                        adapter = viewAdapter
+                                        searchingList = noteList.filter {
+                                            it.date == dateText
+                                        }as MutableList<Notes>
                                         viewAdapter.setList(searchingList)
-                                    }
 
-                                }, YEAR, MONTH, DATE)
+                                    },
+                                    YEAR,
+                                    MONTH,
+                                    DATE
+                                )
                             }
 
                         datePickerDialog?.show()
 
 
+                    }
+                    else -> false
+                }
 
-
-                   }
-                   else -> false
-               }
-                //Toast.makeText(context,"$dateText",Toast.LENGTH_LONG).show()
 
 
                 true
@@ -231,8 +235,8 @@ class HomeFragment : Fragment() {
             val mDialogView = LayoutInflater.from(context).inflate(R.layout.create_note, null)
             val btnPickDate: Button = mDialogView.findViewById(R.id.pickDate)
             val btnPickTime: Button = mDialogView.findViewById(R.id.pickTime)
-            val txtDateDialog: TextView  = mDialogView.findViewById(R.id.txtDateDialog)
-            val txtTimeDialog: TextView  = mDialogView.findViewById(R.id.txtTimeDialog)
+            val txtDateDialog: TextView = mDialogView.findViewById(R.id.txtDateDialog)
+            val txtTimeDialog: TextView = mDialogView.findViewById(R.id.txtTimeDialog)
             val etName: EditText = mDialogView.findViewById(R.id.etFullName)
             val etPhone: EditText = mDialogView.findViewById(R.id.etPhone)
 
@@ -242,16 +246,20 @@ class HomeFragment : Fragment() {
                 .setPositiveButton("Create") { _, _ ->
 
                     //create note
-                    val note = Notes(0,etName.text.toString(),etPhone.text.toString(),
-                        txtDateDialog.text.toString(), 0, txtTimeDialog.text.toString())
+                    val note = Notes(
+                        0, etName.text.toString(), etPhone.text.toString(),
+                        txtDateDialog.text.toString(), txtTimeDialog.text.toString()
+                    )
 
                     //insert note to database
                     val job = GlobalScope.launch(Dispatchers.Default) {
 
                         db?.notesDao()?.insertNote(note)
                     }
-                   //?????????????????????????????????????
-                   viewAdapter.setList(noteList)
+
+                    //update list
+                    noteList.add(note)
+                    viewAdapter.setList(noteList)
 
                 }
                 .setNegativeButton("Cancel") { _, _ ->
@@ -264,7 +272,7 @@ class HomeFragment : Fragment() {
 
             //pick time
             btnPickTime.setOnClickListener {
-                 handleTimeButton(txtTimeDialog)
+                handleTimeButton(txtTimeDialog)
             }
 
 
@@ -300,11 +308,11 @@ class HomeFragment : Fragment() {
     }
 
     //pick time
-    private fun handleTimeButton(view: TextView){
+    private fun handleTimeButton(view: TextView) {
         val calendar = Calendar.getInstance()
         val HOUR = calendar.get(Calendar.HOUR)
         val MINUTE = calendar.get(Calendar.MINUTE)
-        val is24HourFormat : Boolean = is24HourFormat(context)
+        val is24HourFormat: Boolean = is24HourFormat(context)
 
         val timePickerDialog =
             TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
@@ -319,5 +327,75 @@ class HomeFragment : Fragment() {
         timePickerDialog.show()
 
 
+    }
+
+    //dialing
+    override fun dialing(position : Int) {
+        if (searchingList.isNotEmpty()){
+            this.phoneNumber = searchingList[position].phone
+            makePhoneCall(phoneNumber)
+        }else{
+            this.phoneNumber = noteList[position].phone
+            makePhoneCall(phoneNumber)
+        }
+
+    }
+
+    //delete entry
+    override fun delete(position: Int) {
+        var  note: Notes? = null
+        if (searchingList.isNotEmpty()){
+            note  = searchingList[position]
+        }else{
+            note = noteList[position]
+        }
+
+        //delete note to database
+         GlobalScope.launch(Dispatchers.Default) {
+
+            db?.notesDao()?.deleteNote(note)
+        }
+
+        //update list
+        noteList.remove(note)
+        viewAdapter.setList(noteList)
+    }
+
+    //make call
+    //Request PHONE_CALL permission
+    private fun makePhoneCall(phoneNumber: String) {
+
+        if (phoneNumber.isNotEmpty()){
+
+            if (context?.let {
+                    ContextCompat.checkSelfPermission(
+                        it,
+                        android.Manifest.permission.CALL_PHONE)
+                } != PackageManager.PERMISSION_GRANTED){
+                 ActivityCompat.requestPermissions(context as Activity,arrayOf<String>(android.Manifest.permission.CALL_PHONE) ,
+                     REQUEST_CALL
+                 )
+            }else{
+                val dial = "tel:$phoneNumber"
+                startActivity(Intent(Intent.ACTION_CALL,Uri.parse(dial)))
+            }
+        }else{
+            Toast.makeText(context,"Not Found Phone Number",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    //Request PHONE_CALL permission
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_CALL){
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                makePhoneCall(phoneNumber)
+            }else{
+                Toast.makeText(context,"Permission Denied",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

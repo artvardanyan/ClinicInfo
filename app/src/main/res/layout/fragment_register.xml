@@ -3,12 +3,16 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent"
             android:layout_width="match_parent"
-            android:layout_height="804dp"
+            android:layout_height="wrap_content"
             android:padding="7dp">
 
             <TextView
@@ -23,7 +27,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fullNameLayout"
                 android:layout_width="match_parent"
@@ -31,7 +34,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.461"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHeader" >
+                app:layout_constraintTop_toBottomOf="@+id/txtHeader">
 
                 <EditText
                     android:id="@+id/fullName"
@@ -40,9 +43,14 @@
                     android:layout_marginTop="10dp"
                     android:ems="10"
                     android:hint="Ազգանունը, անունը, հայրանունը"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.461"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtHeader" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:id="@+id/txtBirthday"
@@ -55,7 +63,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/fullNameLayout" />
 
             <Spinner
-                android:id="@+id/spinnerDays"
+                android:id="@+id/spinnerDaysTreatment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -64,23 +72,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtBirthday" />
 
             <Spinner
-                android:id="@+id/spinnerMonths"
+                android:id="@+id/spinnerMonthsTreatment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:entries="@array/months"
-                app:layout_constraintStart_toEndOf="@+id/spinnerDays"
+                app:layout_constraintStart_toEndOf="@+id/spinnerDaysTreatment"
                 app:layout_constraintTop_toBottomOf="@+id/txtBirthday" />
 
             <Spinner
-                android:id="@+id/spinnerYears"
+                android:id="@+id/spinnerYearsTreatment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:entries="@array/Years"
-                app:layout_constraintStart_toEndOf="@+id/spinnerMonths"
+                app:layout_constraintStart_toEndOf="@+id/spinnerMonthsTreatment"
                 app:layout_constraintTop_toBottomOf="@+id/txtBirthday" />
 
             <TextView
@@ -92,7 +100,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerMonths" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerMonthsTreatment" />
 
             <CheckBox
                 android:id="@+id/checkMale"
@@ -102,7 +110,7 @@
                 android:layout_marginTop="15dp"
                 android:text="արական"
                 app:layout_constraintStart_toEndOf="@+id/txtGender"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerMonths" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerMonthsTreatment" />
 
             <CheckBox
                 android:id="@+id/checkFemale"
@@ -112,7 +120,7 @@
                 android:layout_marginTop="15dp"
                 android:text="իգական"
                 app:layout_constraintStart_toEndOf="@+id/checkMale"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerMonths" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerMonthsTreatment" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addressLayout"
@@ -121,6 +129,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkMale">
 
+
                 <EditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
@@ -128,13 +137,15 @@
                     android:layout_marginTop="20dp"
                     android:ems="10"
                     android:hint="Բնակության վայրը"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkMale" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/PhoneLayout"
+                android:id="@+id/phoneLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -148,9 +159,15 @@
                     android:layout_marginTop="20dp"
                     android:ems="10"
                     android:hint="Հեռախոսի համարը"
-                    android:inputType="phone"/>
+                    android:inputType="phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/address" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <TextView
@@ -163,7 +180,7 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PhoneLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/phoneLayout" />
 
             <TextView
                 android:id="@+id/question1"
@@ -196,13 +213,14 @@
                 app:layout_constraintStart_toEndOf="@+id/checkAllergyTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question1" />
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etAllergyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue" >
+                app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue">
 
                 <EditText
                     android:id="@+id/etAllergy"
@@ -211,7 +229,12 @@
                     android:layout_marginTop="15dp"
                     android:ems="10"
                     android:hint="Ալերգիկ Դրսևորումներ"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue" />
+
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -946,17 +969,31 @@
                 app:layout_constraintStart_toEndOf="@+id/checkOtherTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question4" />
 
-            <EditText
-                android:id="@+id/etQuestion4"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etQuestion4Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:hint="Այլ Հիվանդություններ"
-                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkOtherTrue" />
+                app:layout_constraintTop_toBottomOf="@+id/checkOtherFalse">
+
+                <EditText
+                    android:id="@+id/etQuestion4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:ems="10"
+                    android:hint="Այլ Հիվանդություններ"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkOtherTrue" />
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <TextView
                 android:id="@+id/question5"
@@ -966,7 +1003,7 @@
                 android:text="@string/healthQuestion5"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etQuestion4" />
+                app:layout_constraintTop_toBottomOf="@+id/etQuestion4Layout" />
 
             <CheckBox
                 android:id="@+id/checkPregnancyTrue"
@@ -988,17 +1025,31 @@
                 app:layout_constraintStart_toEndOf="@+id/checkPregnancyTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question5" />
 
-            <EditText
-                android:id="@+id/etQuestion5"
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etQuestion5Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:hint="Ժամկետները"
-                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkPregnancyTrue" />
+                app:layout_constraintTop_toBottomOf="@+id/checkPregnancyFalse">
+
+                <EditText
+                    android:id="@+id/etQuestion5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:ems="10"
+                    android:hint="Ժամկետները"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkPregnancyTrue" />
+
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtMouthInfo"
@@ -1010,7 +1061,9 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etQuestion5" />
+                app:layout_constraintTop_toBottomOf="@+id/etQuestion5Layout" />
+
+
 
             <TextView
                 android:id="@+id/hygiene"
@@ -1082,8 +1135,42 @@
                 app:layout_constraintStart_toEndOf="@+id/checkNormally"
                 app:layout_constraintTop_toBottomOf="@+id/biteType" />
 
+              <com.google.android.material.button.MaterialButton
+                  android:id="@+id/btnTeethDiagram"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Teeth Diagram"
+                  android:layout_marginTop="30dp"
+                  android:layout_marginStart="40dp"
+                  android:layout_marginEnd="40dp"
+                  app:layout_constraintTop_toBottomOf="@+id/checkPathological"
+                  app:layout_constraintStart_toStartOf="@+id/parent"
+                  app:layout_constraintEnd_toEndOf="@+id/parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTreatmentProcess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TREATMENT PROCESS"
+                android:focusable="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnTeethDiagram"
+                app:layout_constraintStart_toEndOf="@+id/parent"
+                app:layout_constraintEnd_toEndOf="@+id/parent"/>
 
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnTreatmentProcess"
+                app:layout_constraintEnd_toEndOf="@+id/parent"
+                app:layout_constraintStart_toStartOf="@+id/parent"
+                android:text="Register"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

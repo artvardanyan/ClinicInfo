@@ -9,33 +9,37 @@ import com.acaandroid.clinicinfo.fragments.SearchingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var homeFragment: HomeFragment = HomeFragment()
-    private var registerFragment: RegisterFragment = RegisterFragment()
-    private var searchFragment: SearchingFragment = SearchingFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val homeFragment = HomeFragment()
+        val registerFragment = RegisterFragment()
+        val searchFragment = SearchingFragment()
+
         makeCurrentFragment(homeFragment)
+
 
         //button navigates fragments
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.home -> makeCurrentFragment(homeFragment)
                 R.id.register -> makeCurrentFragment(registerFragment)
                 R.id.search -> makeCurrentFragment(searchFragment)
+
             }
             true
         }
+
 
     }
 
     //Navigate fragments
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment, fragment)
+            replace(R.id.fragmentContainer, fragment)
             commit()
+
         }
+
 }

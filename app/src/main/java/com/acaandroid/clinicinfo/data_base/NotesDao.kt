@@ -1,10 +1,10 @@
-package com.acaandroid.clinicinfo.databasenote
+package com.acaandroid.clinicinfo.data_base
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.acaandroid.clinicinfo.databasenote.Notes
+import com.acaandroid.clinicinfo.data_base.Notes
 
 @Dao
 interface NotesDao {

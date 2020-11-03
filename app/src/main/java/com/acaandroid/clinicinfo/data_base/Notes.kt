@@ -1,8 +1,7 @@
-package com.acaandroid.clinicinfo.databasenote
+package com.acaandroid.clinicinfo.data_base
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity
 data class Notes(
@@ -11,17 +10,17 @@ data class Notes(
     val name: String,
     val phone: String,
     val date: String,
-    val timeInMillis: Long,
+    //val timeInMillis: Long,
     val time: String
 
 
-) {
-
-
-    fun getCalendar(): Calendar =
-
-        Calendar.getInstance().apply {
-            this.timeInMillis = timeInMillis
-        }
-
-}
+)// {
+//
+//
+//    fun getCalendar(): Calendar =
+//
+//        Calendar.getInstance().apply {
+//            this.timeInMillis = timeInMillis
+//        }
+//
+//}

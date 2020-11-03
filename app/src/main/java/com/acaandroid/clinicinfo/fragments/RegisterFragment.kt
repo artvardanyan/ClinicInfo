@@ -1,12 +1,15 @@
 package com.acaandroid.clinicinfo.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.acaandroid.clinicinfo.R
+import kotlinx.android.synthetic.main.fragment_register.*
 
+const val TEETH_DIAGRAM = "teeth_diagram"
+const val TREATMENT_PROCESS = "treatment_process"
 
 class RegisterFragment : Fragment() {
 
@@ -19,5 +22,25 @@ class RegisterFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        btnTeethDiagram.setOnClickListener {
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.fragmentContainer, TeethDiagramFragment())
+                addToBackStack(TEETH_DIAGRAM)
+                commit()
+            }
+
+        }
+
+        btnTreatmentProcess.setOnClickListener {
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.fragmentContainer, TeethDiagramFragment())
+                addToBackStack(TREATMENT_PROCESS)
+                commit()
+            }
+
+        }
+    }
 }
