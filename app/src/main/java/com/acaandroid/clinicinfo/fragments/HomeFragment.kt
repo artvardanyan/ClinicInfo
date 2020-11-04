@@ -55,8 +55,7 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
         GlobalScope.launch(Dispatchers.Default) {
 
             if (db != null) {
-                noteList = db!!.notesDao().getAllNotes() as MutableList<Notes>
-            }
+                noteList = db!!.notesDao().getAllNotes().toMutableList()            }
         }
     }
 
@@ -98,7 +97,6 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
                             .contains(p0.toLowerCase(Locale.getDefault())) or
                                 it.phone.contains(p0) or
                                 it.time.toLowerCase(Locale.getDefault()).contains(p0)
-
 
                     }.toMutableList()
 
@@ -194,7 +192,7 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
 
                                             it.date == dateText
                                         }.toMutableList()
-                                        
+
                                         viewAdapter.setList(searchingList)
 
                                     },
