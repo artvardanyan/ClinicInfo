@@ -83,7 +83,7 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
         }
 
         //searching by patient name,recording time or phone
-        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return true
             }
@@ -100,7 +100,8 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
                                 it.time.toLowerCase(Locale.getDefault()).contains(p0)
 
 
-                    } as MutableList<Notes>
+                    }.toMutableList()
+
                     viewAdapter.setList(searchingList)
                 } else {
                     viewAdapter.setList(noteList)
@@ -133,7 +134,7 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
                         searchingList = noteList.filter {
                             it.date.contains(month) and
                                     it.date.contains(year)
-                        } as MutableList<Notes>
+                        }.toMutableList()
 
                         viewAdapter.setList(searchingList)
 
@@ -190,8 +191,10 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
                                                 .toString()
 
                                         searchingList = noteList.filter {
+
                                             it.date == dateText
-                                        } as MutableList<Notes>
+                                        }.toMutableList()
+                                        
                                         viewAdapter.setList(searchingList)
 
                                     },
@@ -203,12 +206,9 @@ class HomeFragment : Fragment(), RecNoteAdapter.RecViewClickListener {
 
                         datePickerDialog?.show()
 
-
                     }
                     else -> false
                 }
-
-
 
                 true
             }

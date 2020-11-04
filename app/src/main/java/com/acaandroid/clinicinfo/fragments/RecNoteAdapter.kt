@@ -59,5 +59,5 @@ class RecNoteAdapter(private val recViewClickListener: RecViewClickListener) :
     override fun getItemCount(): Int {
         return list.size
     }
-    
+
 }
