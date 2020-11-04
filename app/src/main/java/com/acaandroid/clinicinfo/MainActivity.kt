@@ -19,19 +19,15 @@ class MainActivity : AppCompatActivity() {
 
         makeCurrentFragment(homeFragment)
 
-
         //button navigates fragments
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> makeCurrentFragment(homeFragment)
                 R.id.register -> makeCurrentFragment(registerFragment)
                 R.id.search -> makeCurrentFragment(searchFragment)
-
             }
             true
         }
-
-
     }
 
     //Navigate fragments
@@ -39,7 +35,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, fragment)
             commit()
-
         }
-
 }

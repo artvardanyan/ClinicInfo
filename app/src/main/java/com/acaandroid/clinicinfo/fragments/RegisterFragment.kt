@@ -36,7 +36,7 @@ class RegisterFragment : Fragment() {
 
         btnTreatmentProcess.setOnClickListener {
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.fragmentContainer, TeethDiagramFragment())
+                replace(R.id.fragmentContainer,TeethDiagramFragment())
                 addToBackStack(TREATMENT_PROCESS)
                 commit()
             }

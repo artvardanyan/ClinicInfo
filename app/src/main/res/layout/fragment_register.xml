@@ -8,7 +8,6 @@
     android:layout_height="match_parent">
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/parent"
             android:layout_width="match_parent"
@@ -1135,7 +1134,7 @@
                 app:layout_constraintStart_toEndOf="@+id/checkNormally"
                 app:layout_constraintTop_toBottomOf="@+id/biteType" />
 
-              <com.google.android.material.button.MaterialButton
+              <Button
                   android:id="@+id/btnTeethDiagram"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -1147,7 +1146,7 @@
                   app:layout_constraintStart_toStartOf="@+id/parent"
                   app:layout_constraintEnd_toEndOf="@+id/parent"/>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnTreatmentProcess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1160,7 +1159,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/parent"/>
 
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
