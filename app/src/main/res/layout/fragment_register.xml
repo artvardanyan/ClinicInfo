@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/parent"
             android:layout_width="match_parent"
@@ -49,7 +48,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtHeader" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <TextView
                 android:id="@+id/txtBirthday"
@@ -128,7 +126,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkMale">
 
-
                 <EditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
@@ -139,7 +136,6 @@
                     android:inputType="textPersonName"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/checkMale" />
-
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,9 +161,6 @@
 
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
             <TextView
                 android:id="@+id/txtHealthInfo"
@@ -212,7 +205,6 @@
                 app:layout_constraintStart_toEndOf="@+id/checkAllergyTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question1" />
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etAllergyLayout"
                 android:layout_width="match_parent"
@@ -233,10 +225,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/checkAllergyTrue" />
 
-
-
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <TextView
                 android:id="@+id/question2"
@@ -988,11 +977,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/checkOtherTrue" />
 
-
-
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
             <TextView
                 android:id="@+id/question5"
@@ -1024,8 +1009,6 @@
                 app:layout_constraintStart_toEndOf="@+id/checkPregnancyTrue"
                 app:layout_constraintTop_toBottomOf="@+id/question5" />
 
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etQuestion5Layout"
                 android:layout_width="match_parent"
@@ -1046,8 +1029,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/checkPregnancyTrue" />
 
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -1061,8 +1042,6 @@
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etQuestion5Layout" />
-
-
 
             <TextView
                 android:id="@+id/hygiene"
@@ -1158,7 +1137,6 @@
                 app:layout_constraintStart_toEndOf="@+id/parent"
                 app:layout_constraintEnd_toEndOf="@+id/parent"/>
 
-
             <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
@@ -1171,10 +1149,7 @@
                 app:layout_constraintStart_toStartOf="@+id/parent"
                 android:text="Register"/>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </ScrollView>
 

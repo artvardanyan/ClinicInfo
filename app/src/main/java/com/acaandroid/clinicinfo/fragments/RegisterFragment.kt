@@ -13,7 +13,6 @@ const val TREATMENT_PROCESS = "treatment_process"
 
 class RegisterFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +35,7 @@ class RegisterFragment : Fragment() {
 
         btnTreatmentProcess.setOnClickListener {
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.fragmentContainer,TeethDiagramFragment())
+                replace(R.id.fragmentContainer, TeethDiagramFragment())
                 addToBackStack(TREATMENT_PROCESS)
                 commit()
             }

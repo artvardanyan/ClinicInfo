@@ -23,7 +23,6 @@ class DentalDiagram @JvmOverloads constructor(
     private val cellsUpData = MutableList(16) { _ -> 0 }
     private val cellsDownData = MutableList(16) { _ -> 0 }
 
-
     private val boardPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
         strokeWidth = 4f
@@ -45,7 +44,6 @@ class DentalDiagram @JvmOverloads constructor(
 
     }
 
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawBoard(canvas)
@@ -57,8 +55,6 @@ class DentalDiagram @JvmOverloads constructor(
             drawCell(canvas, cellsDown[i], cellsDownData[i])
             i++
         }
-
-
     }
 
     private fun drawBoard(canvas: Canvas) {
@@ -106,23 +102,44 @@ class DentalDiagram @JvmOverloads constructor(
         }
 
     }
+
     //draw teeth diagram numbers
-    private fun drawTeethNum(canvas: Canvas){
+    private fun drawTeethNum(canvas: Canvas) {
         var i = 0
         var num1 = 18
         var num2 = 21
         var num3 = 48
         var num4 = 31
-        while (i < 16){
+        while (i < 16) {
 
-            if (i < 8){
-                canvas.drawText("$num1",(width/16*i)+10.toFloat(),(height/2-height/16-20).toFloat(),txtPaint)
-                canvas.drawText("$num3",(width/16*i)+10.toFloat(),(height/2+height/16+45).toFloat(),txtPaint)
+            if (i < 8) {
+                canvas.drawText(
+                    "$num1",
+                    (width / 16 * i) + 10.toFloat(),
+                    (height / 2 - height / 16 - 20).toFloat(),
+                    txtPaint
+                )
+                canvas.drawText(
+                    "$num3",
+                    (width / 16 * i) + 10.toFloat(),
+                    (height / 2 + height / 16 + 45).toFloat(),
+                    txtPaint
+                )
                 num1--
                 num3--
-            }else{
-                canvas.drawText("$num2",(width/16*i)+10.toFloat(),(height/2-height/16-20).toFloat(),txtPaint)
-                canvas.drawText("$num4",(width/16*i)+10.toFloat(),(height/2+height/16+45).toFloat(),txtPaint)
+            } else {
+                canvas.drawText(
+                    "$num2",
+                    (width / 16 * i) + 10.toFloat(),
+                    (height / 2 - height / 16 - 20).toFloat(),
+                    txtPaint
+                )
+                canvas.drawText(
+                    "$num4",
+                    (width / 16 * i) + 10.toFloat(),
+                    (height / 2 + height / 16 + 45).toFloat(),
+                    txtPaint
+                )
                 num2++
                 num4++
             }
@@ -132,15 +149,15 @@ class DentalDiagram @JvmOverloads constructor(
     }
 
     //draw pathological abbreviation
-    private fun drawOptions(canvas: Canvas){
+    private fun drawOptions(canvas: Canvas) {
         val x = 10f
         val y = 50f
         val str = resources.getStringArray(R.array.dentalDiagram)
 
         var i = 0
         var j = 1
-        while (i < 11){
-            canvas.drawText(str[i],x,y*j,txtPaintOption)
+        while (i < 11) {
+            canvas.drawText(str[i], x, y * j, txtPaintOption)
             j++
             i++
         }
@@ -149,8 +166,20 @@ class DentalDiagram @JvmOverloads constructor(
     //Point damaged tooth
     private fun drawX(canvas: Canvas, rectF: RectF) {
 
-        canvas.drawLine(rectF.left+10f, rectF.top+10f, rectF.right-10f, rectF.bottom-10f, xPaint)
-        canvas.drawLine(rectF.left+10f, rectF.bottom-10f, rectF.right-10f, rectF.top+10f, xPaint)
+        canvas.drawLine(
+            rectF.left + 10f,
+            rectF.top + 10f,
+            rectF.right - 10f,
+            rectF.bottom - 10f,
+            xPaint
+        )
+        canvas.drawLine(
+            rectF.left + 10f,
+            rectF.bottom - 10f,
+            rectF.right - 10f,
+            rectF.top + 10f,
+            xPaint
+        )
     }
 
 
@@ -195,7 +224,7 @@ class DentalDiagram @JvmOverloads constructor(
     }
 
     //Receive teeth's state
-    private fun createBuilder(){
+    private fun createBuilder() {
         val mDialogView = LayoutInflater.from(context).inflate(R.layout.teeth_state, null)
         val mBuilder = AlertDialog.Builder(context)
             .setView(mDialogView)
@@ -208,7 +237,6 @@ class DentalDiagram @JvmOverloads constructor(
             }
         mBuilder.show()
     }
-
 
 
 }
